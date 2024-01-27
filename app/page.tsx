@@ -10,7 +10,7 @@ import Properties from "./components/properties/Properties";
 
 const Home = async () => {
   const listings = await getListings();
-  const listingsForSale = await getListingForSale();
+  //const listingsForSale = await getListingForSale();
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
@@ -24,12 +24,8 @@ const Home = async () => {
   return (
     <ClientsOnly>
       {" "}
-      <Properties
-        currentUser={currentUser}
-        listingsForSale={listingsForSale}
-        listings={listings}
-      />
-      {/*}  <Container>
+      <Properties currentUser={currentUser} listings={listings} />
+      {/*} <Container>
         <div
           className="
             pt-24
@@ -43,7 +39,7 @@ const Home = async () => {
             gap-8
           "
         >
-         {{listings.map((listing: any) => (
+        {/*} {{listings.map((listing: any) => (
             <ListingCard
               currentUser={currentUser}
               key={listing.id}

@@ -43,18 +43,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col items-center cursor-pointer mt-1 w-full">
             {currentUser ? (
               <>
-                <MenuItem onClick={rentModal.onOpen} label="Rent out" />
-                <MenuItem onClick={sellModal.onOpen} label="Sell out" />
-                <MenuItem onClick={sellModal.onOpen} label="Sell out" />
-                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem onClick={rentModal.onOpen} label="Vytvorte Inzerát" />
+
+                <MenuItem onClick={() => {}} label="Moje inzeráty" />
 
                 <hr />
-                <MenuItem onClick={() => signOut()} label="Log out" />
+                <MenuItem onClick={() => signOut()} label="Odháste sa" />
               </>
             ) : (
               <>
-                <MenuItem onClick={loginModal.onOpen} label="Login" />
-                <MenuItem onClick={registerModal.onOpen} label="Register" />
+                <MenuItem onClick={loginModal.onOpen} label="Prihláste sa" />
+                <MenuItem
+                  onClick={registerModal.onOpen}
+                  label="Zaregistrujte sa"
+                />
               </>
             )}
           </div>

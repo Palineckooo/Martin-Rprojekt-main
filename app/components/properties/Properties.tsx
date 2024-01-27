@@ -15,26 +15,34 @@ import PropertyCardBetter from "./PropertyCardBetter";
 interface PropertiesProps {
   listings: any;
   currentUser?: SafeUser | null;
-  listingsForSale: any;
 }
 const Properties: React.FC<PropertiesProps> = ({
   listings,
-  listingsForSale,
+
   currentUser,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(8);
-  const [isForRent, setIsForRent] = useState(false);
+  const [isForRent, setIsForRent] = useState(true);
+  const [isForSale, setIsForSale] = useState(false);
+  const [isForRentAndSale, setIsForRentAndSale] = useState(true);
+
+  function filterPropertiesByCategory(listings: any[], category: string) {
+    return listings.filter((listing) => listing.category === category);
+  }
+
+  const propertiesForSale = filterPropertiesByCategory(listings, "Predaj");
+  const propertiesForRent = filterPropertiesByCategory(listings, "Prenájom");
 
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
   if (isForRent == true) {
   }
-  const currentListing = listings.slice(
+  const currentListing = propertiesForRent.slice(
     indexOfFirstExercise,
     indexOfLastExercise
   );
-  const currentListingForSale = listingsForSale.slice(
+  const currentListingForSale = propertiesForSale.slice(
     indexOfFirstExercise,
     indexOfLastExercise
   );
@@ -44,7 +52,7 @@ const Properties: React.FC<PropertiesProps> = ({
 
     window.scrollTo({ top: 1800, behavior: "smooth" });
   };
-  const sale = <p className="text-blue-500">Sale</p>;
+  const sale = <p className="text-blue-500">Na predaj</p>;
   return (
     <Container>
       <div className="w-full flex items-center justify-center">
@@ -56,18 +64,20 @@ const Properties: React.FC<PropertiesProps> = ({
           mb="10px"
           mt="50px"
         >
-          {isForRent == true ? `Properties for rent` : "Properties for sale"}
+          {isForRent == true
+            ? `Nehnutelnosťi na penájom`
+            : "hnutelnosťi na predaj"}
         </Typography>
       </div>
       <div className="flex items-center justify-center mt-3">
         <button className="pr-10 " onClick={() => setIsForRent(false)}>
           <Image src={sell} width={40} height={40} alt="sell" />
-          <p className=" ">Sell</p>
+          <p className=" ">Predaj</p>
         </button>
 
         <button onClick={() => setIsForRent(true)}>
           <Image src={rent1} width={40} height={40} alt="rent" />
-          Rent
+          Prenájom
         </button>
       </div>
       <Box id="exercises" sx={{ mt: { lg: "5px" } }} mt="5px" p="5px">
@@ -84,7 +94,7 @@ const Properties: React.FC<PropertiesProps> = ({
             gap-3
           "
         >
-          {isForRent == false
+          {isForRent == true
             ? currentListing.map((listing: any) => (
                 <PropertyCardBetter
                   currentUser={currentUser}

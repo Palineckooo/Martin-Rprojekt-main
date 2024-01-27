@@ -22,10 +22,12 @@ import Heading from "./Heading";
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
-  INFO = 2,
-  IMAGES = 3,
-  DESCRIPTION = 4,
-  PRICE = 5,
+  LOCATIONADD = 2,
+  INFO = 3,
+  IMAGES = 4,
+  DESCRIPTION = 5,
+  CONTACT = 6,
+  PRICE = 7,
 }
 
 const RentModal = () => {
@@ -45,22 +47,27 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: "",
-      location: null,
-      guestCount: 1,
+      location: "",
+      bedroomCount: 1,
+      size: 1,
+      adress: "",
+      cityName: "",
+      phoneNumber: "",
       roomCount: 1,
       bathroomCount: 1,
       imageSrc: "",
       price: 1,
       title: "",
       description: "",
+      email: "",
     },
   });
 
   const location = watch("location");
   const category = watch("category");
-  const guestCount = watch("guestCount");
   const roomCount = watch("roomCount");
   const bathroomCount = watch("bathroomCount");
+  const bedroomCount = watch("bedroomCount");
   const imageSrc = watch("imageSrc");
 
   const Map = useMemo(
@@ -97,14 +104,14 @@ const RentModal = () => {
     axios
       .post("/api/listings", data)
       .then(() => {
-        toast.success("Listing created!");
+        toast.success("Inzerát vytvorený");
         router.refresh();
         reset();
         setStep(STEPS.CATEGORY);
         rentModal.onClose();
       })
       .catch(() => {
-        toast.error("Something went wrong.");
+        toast.error("Inzerát sa nedá vytvoriť");
       })
       .finally(() => {
         setIsLoading(false);
@@ -130,8 +137,8 @@ const RentModal = () => {
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading
-        title="Which of these best describes your place?"
-        subtitle="Pick a category"
+        title="Vyberte si či chcete svoju nehnutelnosť predať alebo prenajať"
+        subtitle="Vyberte si jednu z možností"
       />
       <div
         className="
@@ -161,8 +168,8 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Where is your place located?"
-          subtitle="Help guests find you!"
+          title="V akom štáte sa nachádza vaša nehnutelnosť"
+          subtitle="Na mape si vyberte miesto"
         />
         <CountrySelect
           value={location}
@@ -172,33 +179,71 @@ const RentModal = () => {
       </div>
     );
   }
+  if (step === STEPS.LOCATIONADD) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="How would you describe your place?"
+          subtitle="Short and sweet works best!"
+        />
+        <Input
+          id="cityName"
+          label="Mesto"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="adress"
+          label="Adresa"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
 
   if (step === STEPS.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Share some basics about your place"
-          subtitle="What amenitis do you have?"
+          title="Základné informácie o vašej nehnutelnosti"
+          subtitle="Zadajte základné informácie o vašej nehnutelnosti"
         />
-        <Counter
-          onChange={(value) => setCustomValue("guestCount", value)}
-          value={guestCount}
-          title="Guests"
-          subtitle="How many guests do you allow?"
-        />
-        <hr />
         <Counter
           onChange={(value) => setCustomValue("roomCount", value)}
           value={roomCount}
-          title="Rooms"
-          subtitle="How many rooms do you have?"
+          title="Miestnosti"
+          subtitle="Koľko izieb máte?"
         />
-        <hr />
+
         <Counter
           onChange={(value) => setCustomValue("bathroomCount", value)}
           value={bathroomCount}
-          title="Bathrooms"
-          subtitle="How many bathrooms do you have?"
+          title="Kúpeľne"
+          subtitle="Koľko kúpeľní máte?"
+        />
+
+        <Counter
+          onChange={(value) => setCustomValue("bedroomCount", value)}
+          value={bedroomCount}
+          title="Spálne"
+          subtitle="Koľko spálni máte?"
+        />
+
+        <hr />
+        <Input
+          id="size"
+          label="Velkosť nehnutelnosti"
+          disabled={isLoading}
+          type="number"
+          register={register}
+          errors={errors}
+          required
         />
       </div>
     );
@@ -246,6 +291,36 @@ const RentModal = () => {
       </div>
     );
   }
+  if (step === STEPS.CONTACT) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Zadajte svoje kontaktné údaje"
+          subtitle="Ako vás môźe uchádzač skontaktovať?"
+        />
+        <Input
+          id="phoneNumber"
+          label="Telefónne číslo"
+          formatPrice
+          type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="email"
+          label="Email"
+          formatPrice
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
 
   if (step === STEPS.PRICE) {
     bodyContent = (
@@ -272,7 +347,7 @@ const RentModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={rentModal.isOpen}
-      title="Airbnb your home!"
+      title="Vytvorenie inzerátu"
       actionLabel={actionLabel}
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}

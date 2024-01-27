@@ -21,7 +21,7 @@ model User {
   accounts Account[]
   listings Listing[]
   reservations Reservation[]
-  sell Sell[]
+ 
 }
 
 model Account {
@@ -52,26 +52,12 @@ model Listing {
   category  String
   roomCount Int
   bathroomCount Int
-  guestCount Int
-  locationValue String
-  userId String @db.ObjectId
-  price Int
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  reservations Reservation[]
-}
-
-
-model Sell {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category  String
   bedroomCount Int
-  bathroomCount Int
-  guestCount Int
+  size String
+  cityName String
+  adress String
+  phoneNumber String
+  email String
   locationValue String
   userId String @db.ObjectId
   price Int
@@ -79,6 +65,8 @@ model Sell {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
 }
+
+
 
 
 model Reservation {
@@ -92,7 +80,8 @@ model Reservation {
   
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
-  sell Sell @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
 }
+
 
 
