@@ -1,4 +1,5 @@
 "use client";
+
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeUser } from "@/app/types";
 import { Reservation, Listing } from "@prisma/client";
@@ -66,7 +67,6 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
         integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
-        crossorigin="anonymous"
       />{" "}
       <a
         href="#"
@@ -79,7 +79,7 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
                 <Image
                   alt="listing"
                   src={data.imageSrc}
-                  className="object-cover h-full w-full h-1/3 group-hover:scale-110 transition"
+                  className="object-cover h-full w-full  group-hover:scale-110 transition"
                   fill
                 />
               </div>

@@ -5,7 +5,7 @@ interface IParams {
 }
 
 export default async function getListingForSaleById(params: IParams) {
-  try {
+  /* try {
     const { listingId } = params;
     const listing = await prisma.listing.findUnique({
       where: {
@@ -30,5 +30,5 @@ export default async function getListingForSaleById(params: IParams) {
     };
   } catch (error: any) {
     throw new Error(error);
-  }
+  }*/
 }
