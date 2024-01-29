@@ -16,18 +16,19 @@ import CountrySelect from "../inputs/CountrySelect";
 import { categories } from "../navbar/Categories";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
-
+import { categories2 } from "../navbar/Categories";
 import Heading from "./Heading";
 
 enum STEPS {
   CATEGORY = 0,
-  LOCATION = 1,
-  LOCATIONADD = 2,
-  INFO = 3,
-  IMAGES = 4,
-  DESCRIPTION = 5,
-  CONTACT = 6,
-  PRICE = 7,
+  CATEGORY2 = 1,
+  LOCATION = 2,
+  LOCATIONADD = 3,
+  INFO = 4,
+  IMAGES = 5,
+  DESCRIPTION = 6,
+  CONTACT = 7,
+  PRICE = 8,
 }
 
 const RentModal = () => {
@@ -60,11 +61,13 @@ const RentModal = () => {
       title: "",
       description: "",
       email: "",
+      category2: "",
     },
   });
 
   const location = watch("location");
   const category = watch("category");
+  const category2 = watch("category2");
   const roomCount = watch("roomCount");
   const bathroomCount = watch("bathroomCount");
   const bedroomCount = watch("bedroomCount");
@@ -111,7 +114,7 @@ const RentModal = () => {
         rentModal.onClose();
       })
       .catch(() => {
-        toast.error("Inzerát sa nedá vytvoriť");
+        toast.error("Prosím vyplňte všetky polia");
       })
       .finally(() => {
         setIsLoading(false);
@@ -163,6 +166,37 @@ const RentModal = () => {
       </div>
     </div>
   );
+  if (step === STEPS.CATEGORY2) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Vyberte si či je vaša nehnutelnosť apartmán alebo dom"
+          subtitle="Vyberte si jednu z možností"
+        />
+        <div
+          className="
+          grid 
+          grid-cols-1 
+          md:grid-cols-2 
+          gap-3
+          max-h-[50vh]
+          overflow-y-auto
+        "
+        >
+          {categories2.map((item) => (
+            <div key={item.label} className="col-span-1">
+              <CategoryInput
+                onClick={(category2) => setCustomValue("category2", category2)}
+                selected={category2 === item.label}
+                label={item.label}
+                icon={item.icon}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   if (step === STEPS.LOCATION) {
     bodyContent = (
@@ -253,8 +287,8 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Add a photo of your place"
-          subtitle="Show guests what your place looks like!"
+          title="Pridajte fotku svojej nehnutelnosti"
+          subtitle="Ukážte záujemcom ako vyzerá vaša nehnutelnosť"
         />
         <ImageUpload
           onChange={(value) => setCustomValue("imageSrc", value)}
@@ -268,8 +302,8 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="How would you describe your place?"
-          subtitle="Short and sweet works best!"
+          title="Popíšte svoju nehnutelnosť"
+          subtitle="Napíšte popis o vašej nehnutelnosti"
         />
         <Input
           id="title"
@@ -301,7 +335,6 @@ const RentModal = () => {
         <Input
           id="phoneNumber"
           label="Telefónne číslo"
-          formatPrice
           type="number"
           disabled={isLoading}
           register={register}
@@ -312,7 +345,6 @@ const RentModal = () => {
         <Input
           id="email"
           label="Email"
-          formatPrice
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -326,8 +358,8 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Now, set your price"
-          subtitle="How much do you charge per night?"
+          title="Zadajte cenu"
+          subtitle="Zadajte cenu za ktorú chcete prenajať alebo predať vašu nehnutelnosť"
         />
         <Input
           id="price"

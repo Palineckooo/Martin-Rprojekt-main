@@ -10,9 +10,10 @@ import { FaSkiing } from "react-icons/fa";
 import { BsSnow } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
-
+import { FaBuilding } from "react-icons/fa";
 import CategoryBox from "@/app/CategoryBox";
 import Container from "../Container";
+import { GiFamilyHouse } from "react-icons/gi";
 
 export const categories = [
   {
@@ -22,8 +23,20 @@ export const categories = [
   },
   {
     label: "Predaj",
-    icon: FaBed,
+    icon: FaHouseChimney,
     description: "Chete predať svoju nehnutelnosť",
+  },
+];
+export const categories2 = [
+  {
+    label: "Apartmán",
+    icon: FaBuilding,
+    description: "Vaša nehnutelnosť je apartmán",
+  },
+  {
+    label: "Dom",
+    icon: GiFamilyHouse,
+    description: "Vaša nehnutelnosť je dom",
   },
 ];
 

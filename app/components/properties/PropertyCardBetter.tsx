@@ -8,6 +8,10 @@ import React, { useCallback } from "react";
 import { useMemo } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
+import { FaBath } from "react-icons/fa";
+import { IoIosResize } from "react-icons/io";
+import { CiUser } from "react-icons/ci";
+import { FaBed } from "react-icons/fa";
 //import HeartButton from "../HeartButton";
 import Button from "../Button";
 interface PropertyCardBetterProps {
@@ -117,7 +121,7 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
 
             <p className="text-primary mt-2 inline-block whitespace-nowrap rounded-xl font-semibold leading-tight">
               <span className="text-sm uppercase"> EUR </span>
-              <span className="text-2xl">{data.price}</span>
+              <span className="text-2xl">{data.price}€ </span>
             </p>
           </div>
           <div className="mt-4">
@@ -126,40 +130,33 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
           <div className="justify-center">
             <div className="mt-4 flex space-x-3 overflow-hidden rounded-lg px-1 py-1">
               <p className="flex items-center font-medium text-gray-800">
-                <i className="fa fa-bed mr-2 text-blue-900"></i>
+                <FaBed className="mr-2 text-blue-900" />
                 {data.roomCount}
               </p>
 
               <p className="flex items-center font-medium text-gray-800">
-                <i className="fa fa-bath mr-2 text-blue-900"></i>
+                <FaBath className="mr-2 text-blue-900" />
                 {data.bathroomCount}
               </p>
               <p className="flex items-center font-medium text-gray-800">
-                <i
-                  className="fa fa-home mr-2 text-blue-900"
-                  aria-hidden="true"
-                ></i>
+                <IoIosResize className="mr-2 text-blue-900" />
                 {data.size} m<sup>2</sup>
               </p>
             </div>
           </div>
-          <div className="mt-8 grid grid-cols-2">
-            <div className="flex items-center">
+          <div className="mt-8 ">
+            <div className="flex items-center w-full">
               <div className="relative">
-                <div className="h-6 w-6 rounded-full bg-gray-200 md:h-8 md:w-8"></div>
+                <div className="h-6 w-6 rounded-full bg-gray-200 md:h-8 md:w-8 flex items-center justify-center align-middle">
+                  <CiUser />
+                </div>
                 <span className="bg-primary-red absolute top-0 right-0 inline-block h-3 w-3 rounded-full"></span>
               </div>
 
-              <p className="line-clamp-1 ml-2 text-gray-800"> {data.email}</p>
-            </div>
-
-            <div className="flex justify-end">
-              <button>
-                <i className="fa fa-sms mx-1 rounded-md bg-[#0174E1] py-1 px-3 text-2xl text-white"></i>
-              </button>
-              <button>
-                <i className="fa fa-phone rounded-md bg-[#0174E1] py-1 px-3 text-2xl text-white"></i>
-              </button>
+              <p className="line-clamp-1 ml-2 w-full text-gray-800">
+                {" "}
+                {data.email}
+              </p>
             </div>
           </div>
         </div>
