@@ -98,7 +98,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
                   className="border bprder-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm "
                   type="text"
                   placeholder="Meno"
-                  defaultValue={currentUser?.email}
+                  defaultValue={currentUser?.name}
                 />
                 <input
                   className="border bprder-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm "
