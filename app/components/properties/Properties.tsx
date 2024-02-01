@@ -130,6 +130,7 @@ const Properties: React.FC<PropertiesProps> = ({
             gap-3
           "
         >
+          {}
           {isForRent == true
             ? currentListing.map((listing: any) => (
                 <PropertyCardBetter
