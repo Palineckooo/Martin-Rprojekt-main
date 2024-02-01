@@ -13,6 +13,7 @@ import user from "./user.png";
 import Link from "next/link";
 import { SafeUser } from "@/app/types";
 import Button from "@/app/components/Button";
+import EmailForm from "./EmailForm";
 
 interface IParams {
   listingId?: string;
@@ -96,34 +97,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
                 </div>
                 <div className="font-bold text-lg mt-4">{listing.email}</div>
               </div>
-              <form className="flex flex-col gap-1 ">
-                <input
-                  className="border bprder-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm "
-                  type="text"
-                  placeholder="Meno"
-                  defaultValue={currentUser?.name}
-                />
-                <input
-                  className="border bprder-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm "
-                  type="text"
-                  defaultValue={currentUser?.email}
-                  placeholder="Email"
-                />
-                <input
-                  className="border bprder-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm "
-                  type="text"
-                  placeholder="Telefone cislo"
-                />
-                <textarea
-                  className="border pl-3 pt-3 border-gray-300 h-52 focus:border-blue-500 outline-none resize-none rounded w-full p-4 text-sm text-gray-400 "
-                  placeholder="Vasa sprava "
-                ></textarea>
-                <div className="flex items-center justify-center h-full">
-                  <button className="hover:bg-blue-500  text-black hover:text-white rounded p-4 text-sm w-full transition">
-                    Poslite spravu
-                  </button>
-                </div>
-              </form>
+              <EmailForm currentUser={currentUser} listing={listing} />
             </div>
           </div>
         </div>
