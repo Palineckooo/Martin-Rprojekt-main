@@ -7,6 +7,7 @@ import getListingForSale from "./actions/getListingForSale";
 import getCurrentUser from "./actions/getCurentUser";
 import ClientsOnly from "./components/ClientsOnly";
 import Properties from "./components/properties/Properties";
+import Navbar from "./components/navbar/Navbar";
 
 const Home = async () => {
   const listings = await getListings();
@@ -23,7 +24,8 @@ const Home = async () => {
 
   return (
     <ClientsOnly>
-      {" "}
+      <Navbar currentUser={currentUser} />
+
       <Properties currentUser={currentUser} listings={listings} />
       {/*} <Container>
         <div

@@ -35,7 +35,7 @@ const LoginModal = () => {
 
       if (callback?.ok) {
         loginModal.onClose;
-        toast.success("Logged in");
+        toast.success("Prihlásenie prebehlo úspešne");
         router.refresh();
       }
       if (callback?.error) {
@@ -51,10 +51,11 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Log in to your account!" />
+      <Heading title="Vitajte spet" subtitle="Prihláste sa do svojho účtu!" />
       <Input
         id="email"
         label="Email"
+        type="email"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -64,7 +65,7 @@ const LoginModal = () => {
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="Heslo"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -77,7 +78,7 @@ const LoginModal = () => {
     <div className="flex flex-col gap-4 mt-3 ">
       <Button
         outline
-        label="Continue with google"
+        label="Pokračovať s google"
         icon={FcGoogle}
         onClick={() => signIn("google")}
       />
@@ -85,7 +86,7 @@ const LoginModal = () => {
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="justify-center flex flex-row items-center gap-2">
           <div>
-            <div>Are you not registered ? </div>
+            <div>Ste zaregistrovany ? </div>
           </div>
           <div>
             <div
@@ -104,7 +105,7 @@ const LoginModal = () => {
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title="Login"
-      actionLabel="Log in"
+      actionLabel="Prihláste sa"
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

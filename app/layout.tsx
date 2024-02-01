@@ -31,7 +31,6 @@ export default async function RootLayout({
         <RegisterModal />
         <SellModal />
         <RentModal />
-        <Navbar currentUser={currentUser} />
       </ClientsOnly>
       <body className={inter.className}>{children}</body>
     </html>

@@ -12,7 +12,7 @@ interface NavbarProps {
   currentUser?: SafeUser | null;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
+const Navbar1: React.FC<NavbarProps> = ({ currentUser }) => {
   const [clicked, setIsClicked] = useState(false);
   const [input, setInput] = useState("");
   const [form, setForm] = useState({ location: "" });
@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const router = useRouter();
 
   return (
-    <div className="h-full custom-img">
+    <div className="h-16 bg-blue-500">
       <nav className="font-normal">
         <div className="max-w-6xl  mx-auto ">
           <div className="flex justify-between md:justify-between md:items-center">
@@ -160,7 +160,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   );
 };
 
-export default Navbar;
+export default Navbar1;
 /* <div className="fixed w-full bg-white shadow-sm">
       <div className="py-4 border-b-[1px]">
         <Container>

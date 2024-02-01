@@ -10,12 +10,14 @@ import { signOut } from "next-auth/react";
 import { SafeUser } from "@/app/types";
 import useRentModal from "@/app/hooks/useRentModal";
 import useSelltModal from "@/app/hooks/useSellModal";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
   const rentModal = useRentModal();
   const registerModal = useRegisterModal();
   const sellModal = useSelltModal();
@@ -45,7 +47,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <>
                 <MenuItem onClick={rentModal.onOpen} label="Vytvorte Inzerát" />
 
-                <MenuItem onClick={() => {}} label="Moje inzeráty" />
+                <MenuItem
+                  onClick={() => {
+                    //  router.push(`/myProperties/${currentUser?.id}`);
+                  }}
+                  label="Moje inzeráty"
+                />
 
                 <hr />
                 <MenuItem onClick={() => signOut()} label="Odháste sa" />

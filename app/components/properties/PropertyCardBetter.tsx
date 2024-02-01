@@ -66,7 +66,10 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
   return (
-    <div className="relative mx-auto w-full">
+    <div
+      className="relative mx-auto w-full"
+      onClick={() => router.push(`/listings/${data.id}`)}
+    >
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"

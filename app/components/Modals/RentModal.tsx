@@ -217,8 +217,8 @@ const RentModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="How would you describe your place?"
-          subtitle="Short and sweet works best!"
+          title="Zadajte mesto a adresu vašej nehnutelnosti"
+          subtitle="pomôže to záujemcom nájsť vašu nehnutelnosť"
         />
         <Input
           id="cityName"
