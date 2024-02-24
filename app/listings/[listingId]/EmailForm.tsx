@@ -10,7 +10,7 @@ const EmailForm = ({ currentUser, listing }) => {
   const [message, setMessage] = useState("");
 
   const sendEmail = () => {
-    emailjs.init("ckb28Uf33mzPIbCmF"); // Nahraďte "user_your_user_id" skutečným uživatelským ID z vašeho EmailJS účtu
+    emailjs.init("ckb28Uf33mzPIbCmF");
     const senderN = name;
     const sendername = currentUser?.email;
     const to = listing.email;
@@ -35,7 +35,7 @@ const EmailForm = ({ currentUser, listing }) => {
 
   return (
     <div>
-      <form className="flex flex-col gap-1">
+      <form className="flex flex-col gap-1 ">
         <input
           className="border border-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm"
           type="text"
@@ -50,12 +50,7 @@ const EmailForm = ({ currentUser, listing }) => {
           placeholder="Email"
           value={email}
         />
-        <input
-          className="border border-gray-300 focus:border-blue-500 outline-none rounded w-full px-4 h-14 text-sm"
-          type="tel"
-          placeholder="Telefone cislo"
-          value={phone}
-        />
+
         <textarea
           className="border pl-3 pt-3 border-gray-300 h-52 focus:border-blue-500 outline-none resize-none rounded w-full p-4 text-sm text-gray-400"
           placeholder="Vasa sprava"
@@ -65,13 +60,13 @@ const EmailForm = ({ currentUser, listing }) => {
         ></textarea>
         <div className="flex items-center justify-center h-full">
           <button
-            className="hover:bg-blue-500 text-black hover:text-white rounded p-4 text-sm w-full transition"
+            className="before:ease relative h-12  overflow-hidden border border-blue-500 text-blue-500 shadow-2xl transition-all before:absolute before:top-1/2 before:h-0 before:w-64 before:origin-center before:-translate-x-20 before:rotate-45 before:bg-blue-500 before:duration-300 w-full hover:text-white hover:shadow-blue-500 hover:before:h-64 hover:before:-translate-y-32"
             type="button" // Přidán typ tlačítka
             onClick={() => {
               sendEmail();
             }}
           >
-            Poslite spravu
+            <span className="relative z-10">Poslanie emailu</span>
           </button>
         </div>
       </form>

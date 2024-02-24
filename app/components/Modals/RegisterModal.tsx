@@ -50,8 +50,8 @@ const RegisterModal = () => {
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
-        title="Create an account"
-        subtitle="Do not forget your password!"
+        title="Vytvorte si účet"
+        subtitle="Nezabudni te si svoje heslo, budeš ho potrebovať pri prihlásení."
       />
       <Input
         id="email"
@@ -63,7 +63,7 @@ const RegisterModal = () => {
       />
       <Input
         id="name"
-        label="Name"
+        label="Meno"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -72,7 +72,7 @@ const RegisterModal = () => {
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="Heslo"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -83,26 +83,17 @@ const RegisterModal = () => {
 
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3 ">
-      <Button
-        outline
-        label="Continue with google"
-        icon={FcGoogle}
-        onClick={() => {
-          signIn("google");
-        }}
-      />
-
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="justify-center flex flex-row items-center gap-2">
           <div>
-            <div>Already have an account ? </div>
+            <div>Máte už účet ? </div>
           </div>
           <div>
             <div
               className="text-neutral-800 cursor-pointer hover:underline"
               onClick={toggle}
             >
-              Log in
+              Prihláste sa
             </div>
           </div>
         </div>
@@ -113,8 +104,8 @@ const RegisterModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={registerModal.isOpen}
-      title="Register"
-      actionLabel="Continue"
+      title="Registrácia"
+      actionLabel="Registrovať sa"
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

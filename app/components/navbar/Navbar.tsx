@@ -25,25 +25,27 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         <div className="max-w-6xl  mx-auto ">
           <div className="flex justify-between md:justify-between md:items-center">
             <div className="flex gap-3 items-center">
-              {/*                                        Left Logo                                                                         */}
+              {/*                                        Lave Logo                                                                         */}
               <div>
                 <a href="#" className="flex items-end py-3 px-3">
                   <span className=" text-3xl font-normal text-white ">
-                    <button onClick={router.back}>REALITIK</button>
+                    <a href="/">
+                      <button>REALITIK</button>
+                    </a>
                   </span>
                 </a>
               </div>
-              {/*                                   End of Left Logo*                                                                     /}
-            {/*                                    Rigt List Items                                                                   */}
+              {/*                                   Lave logo*                                                                     /}
+            {/*                                    Prava strana                                                                   */}
             </div>
             <UserMenu currentUser={currentUser} />
 
-            {/*                                                                 End of Rigt List Items                                                                                         */}
+            {/*                                                                 Prava strana                                                                                       */}
             {/*                                                                     Burger                                                                                                         */}
 
-            {/*                                                                    End of  Burger                                                                                                         */}
+            {/*                                                                    Burger                                                                                                        */}
           </div>
-          {/*                                                                     Mobile version                                                                                                         */}
+          {/*                                                                  Burger verzia                                                                                                     */}
           <div
             className={
               clicked

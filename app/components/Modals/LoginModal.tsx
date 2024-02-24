@@ -51,7 +51,7 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Vitajte spet" subtitle="Prihláste sa do svojho účtu!" />
+      <Heading title="Vitajte spät" subtitle="Prihláste sa do svojho účtu!" />
       <Input
         id="email"
         label="Email"
@@ -76,13 +76,6 @@ const LoginModal = () => {
 
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3 ">
-      <Button
-        outline
-        label="Pokračovať s google"
-        icon={FcGoogle}
-        onClick={() => signIn("google")}
-      />
-
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="justify-center flex flex-row items-center gap-2">
           <div>

@@ -29,7 +29,9 @@ const Navbar1: React.FC<NavbarProps> = ({ currentUser }) => {
               <div>
                 <a href="#" className="flex items-end py-3 px-3">
                   <span className=" text-3xl font-normal text-white ">
-                    <button onClick={router.back}>REALITIK</button>
+                    <a href="/">
+                      <button>REALITIK</button>
+                    </a>
                   </span>
                 </a>
               </div>

@@ -13,6 +13,7 @@ import { IoIosResize } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import { FaBed } from "react-icons/fa";
 import HeartButton from "../HeartButton";
+import HeartButtonDelete from "@/app/HearthButtonDelete";
 
 //import HeartButton from "../HeartButton";
 import Button from "../Button";
@@ -26,7 +27,7 @@ interface PropertyCardBetterProps {
   currentUser?: SafeUser | null;
 }
 
-const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
+const PropertyCardBetterDelete: React.FC<PropertyCardBetterProps> = ({
   data,
   reservation,
   onAction,
@@ -167,14 +168,13 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
                 {data.email}
               </p>
             </div>
-            <div className="mt-6">
-              <HeartButton listingId={data.id} currentUser={currentUser} />
-            </div>
           </div>
+
+          <HeartButtonDelete listingId={data.id} currentUser={currentUser} />
         </div>
       </a>
     </div>
   );
 };
 
-export default PropertyCardBetter;
+export default PropertyCardBetterDelete;

@@ -9,7 +9,9 @@ import RentModal from "./components/Modals/RentModal";
 import SellModal from "./components/Modals/SellModal";
 import Navbar from "./components/navbar/Navbar";
 import getCurrentUser from "./actions/getCurentUser";
+import SearchModal from "./components/Modals/SearchModal";
 import "./globals.css";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -31,6 +33,7 @@ export default async function RootLayout({
         <RegisterModal />
         <SellModal />
         <RentModal />
+        <SearchModal />
       </ClientsOnly>
       <body className={inter.className}>{children}</body>
     </html>

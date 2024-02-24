@@ -11,6 +11,7 @@ import { SafeUser } from "@/app/types";
 import useRentModal from "@/app/hooks/useRentModal";
 import useSelltModal from "@/app/hooks/useSellModal";
 import { useRouter } from "next/navigation";
+import useSearchModal from "@/app/hooks/useSearchModal";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -18,6 +19,8 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const router = useRouter();
+
+  const searchModal = useSearchModal();
   const rentModal = useRentModal();
   const registerModal = useRegisterModal();
   const sellModal = useSelltModal();
@@ -45,25 +48,33 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col items-center cursor-pointer mt-1 w-full">
             {currentUser ? (
               <>
-                <MenuItem onClick={rentModal.onOpen} label="Vytvorte Inzerát" />
+                <MenuItem
+                  onClick={rentModal.onOpen}
+                  label="Vytvorenie Inzerátu"
+                />
+                <hr />
 
                 <MenuItem
-                  onClick={() => {
-                    //  router.push(`/myProperties/${currentUser?.id}`);
-                  }}
-                  label="Moje inzeráty"
+                  onClick={() => router.push("/myPropert")}
+                  label="Vaše inzeráty"
                 />
+                <hr />
+                <MenuItem
+                  onClick={() => router.push("/myFav")}
+                  label="Oblubene inzeráty"
+                />
+                <hr />
+                <MenuItem onClick={searchModal.onOpen} label="Hladat inzerat" />
 
                 <hr />
-                <MenuItem onClick={() => signOut()} label="Odháste sa" />
+
+                <MenuItem onClick={() => signOut()} label="Odhlásenie sa" />
               </>
             ) : (
               <>
-                <MenuItem onClick={loginModal.onOpen} label="Prihláste sa" />
-                <MenuItem
-                  onClick={registerModal.onOpen}
-                  label="Zaregistrujte sa"
-                />
+                <MenuItem onClick={loginModal.onOpen} label="Prihlásenie sa" />
+                <hr />
+                <MenuItem onClick={registerModal.onOpen} label="Registrácia" />
               </>
             )}
           </div>

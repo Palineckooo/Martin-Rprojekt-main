@@ -2,15 +2,20 @@ import Container from "@/app/components/Container";
 
 import EmptyState from "@/app/components/EmptyState";
 
-import getListings from "./actions/getListings";
+import getListings, { IListingsParams } from "./actions/getListings";
 import getListingForSale from "./actions/getListingForSale";
 import getCurrentUser from "./actions/getCurentUser";
 import ClientsOnly from "./components/ClientsOnly";
 import Properties from "./components/properties/Properties";
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./Footer";
 
-const Home = async () => {
-  const listings = await getListings();
+interface HomeProps {
+  searchParams: IListingsParams;
+}
+
+const Home = async ({ searchParams }: HomeProps) => {
+  const listings = await getListings(searchParams);
   //const listingsForSale = await getListingForSale();
   const currentUser = await getCurrentUser();
 
@@ -57,6 +62,7 @@ const Home = async () => {
           ))}
         </div>
           </Container>{*/}
+      <Footer />
     </ClientsOnly>
   );
 };

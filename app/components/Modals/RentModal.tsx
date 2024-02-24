@@ -123,10 +123,10 @@ const RentModal = () => {
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
-      return "Create";
+      return "Vytvorenie inzerátu";
     }
 
-    return "Next";
+    return "Ďalej";
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
@@ -307,7 +307,7 @@ const RentModal = () => {
         />
         <Input
           id="title"
-          label="Title"
+          label="Názov inzerátu"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -316,7 +316,7 @@ const RentModal = () => {
         <hr />
         <Input
           id="description"
-          label="Description"
+          label="Popis"
           disabled={isLoading}
           register={register}
           errors={errors}

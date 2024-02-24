@@ -14,7 +14,7 @@ import Link from "next/link";
 import { SafeUser } from "@/app/types";
 import Button from "@/app/components/Button";
 import EmailForm from "./EmailForm";
-
+import Footer from "@/app/footer";
 interface IParams {
   listingId?: string;
 }
@@ -90,7 +90,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 
               <div>{listing.description}</div>
             </div>
-            <div className="flex-1 bg-white w-full mb-8 border border-gray-300 rounded-lg mt-3 px-6 py-8 ">
+            <div className="flex-1 bg-white w-full mb-8 border shadow-lg border-gray-300 rounded-lg mt-3 px-6 py-8 ">
               <div className="flex flex-col items-center gap-x-4 mb-8">
                 <div className="w-20 h-20 p-1 border border-gray-300">
                   <Image src={user} alt="photo" className="" />
@@ -102,6 +102,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
           </div>
         </div>
       </section>
+      <Footer />
     </ClientsOnly>
   );
 };

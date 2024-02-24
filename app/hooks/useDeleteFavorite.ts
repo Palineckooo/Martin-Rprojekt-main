@@ -12,18 +12,12 @@ interface IUseFavorite {
   currentUser?: SafeUser | null;
 }
 
-const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
+const useDeleteFavorite = ({ listingId, currentUser }: IUseFavorite) => {
   const router = useRouter();
 
   const loginModal = useLoginModal();
 
-  const hasFavorited = useMemo(() => {
-    const list = currentUser?.favoriteIds || [];
-
-    return list.includes(listingId);
-  }, [currentUser, listingId]);
-
-  const toggleFavorite = useCallback(
+  const toggleDeleteFavorite = useCallback(
     async (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();
 
@@ -34,22 +28,21 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
       try {
         let request;
 
-        request = () => axios.post(`/api/favorites/${listingId}`);
-
+        request = () => axios.delete(`/api/favorites/${listingId}`);
+        window.scrollTo(0, 100);
         await request();
         router.refresh();
-        toast.success("Inzerat bol uspesne pridany ku oblubenym");
+        toast.success("Vymazanie prebehlo uspesne");
       } catch (error) {
         toast.error("Niekde nastala chyba");
       }
     },
-    [currentUser, hasFavorited, listingId, loginModal, router]
+    [currentUser, , listingId, loginModal, router]
   );
 
   return {
-    hasFavorited,
-    toggleFavorite,
+    toggleDeleteFavorite,
   };
 };
 
-export default useFavorite;
+export default useDeleteFavorite;
