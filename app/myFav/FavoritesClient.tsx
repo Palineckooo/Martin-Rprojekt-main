@@ -4,6 +4,7 @@ import Heading from "../components/Modals/Heading";
 import Container from "@/app/components/Container";
 import PropertyCardBetter from "../components/properties/PropertyCardBetter";
 import PropertyCardBetterDelete from "../components/properties/PropertyCardBetterDelete";
+import Heading1 from "../Heading1";
 
 interface FavoritesClientProps {
   listings: SafeListing[];
@@ -16,18 +17,19 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
 }) => {
   return (
     <Container>
-      <Heading title="Favorites" subtitle="List of places you favorited!" />
+      <div className="mt-10"></div>
+      <Heading1 />
       <div
         className="
-          mt-10
-          grid 
-          grid-cols-1 
-          sm:grid-cols-2 
-          md:grid-cols-3 
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
+      pt-40
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-4
+            gap-3
         "
       >
         {listings.map((listing: any) => (

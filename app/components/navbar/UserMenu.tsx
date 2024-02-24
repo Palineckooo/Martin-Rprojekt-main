@@ -26,6 +26,21 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const sellModal = useSelltModal();
   const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = useState(false);
+  const scrollDown = () => {
+    window.scroll({
+      top: 1800,
+      behavior: "smooth", // You can use 'auto' for an instant scroll
+    });
+  };
+  const pushDownFav = () => {
+    router.push("/myFav");
+    setTimeout(scrollDown, 500);
+  };
+  const pushDownCollect = () => {
+    router.push("/myPropert");
+    setTimeout(scrollDown, 500);
+  };
+
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
@@ -55,16 +70,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <hr />
 
                 <MenuItem
-                  onClick={() => router.push("/myPropert")}
+                  onClick={() => pushDownCollect()}
                   label="Vaše inzeráty"
                 />
                 <hr />
                 <MenuItem
-                  onClick={() => router.push("/myFav")}
-                  label="Oblubene inzeráty"
+                  onClick={() => pushDownFav()}
+                  label="Obľúbené inzeráty"
                 />
-                <hr />
-                <MenuItem onClick={searchModal.onOpen} label="Hladat inzerat" />
 
                 <hr />
 

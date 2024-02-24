@@ -25,7 +25,7 @@ const HeartButtonDelete: React.FC<HeartButtonProps> = ({
     <div>
       <Button
         small
-        label="Odstranit z oblubenych"
+        label="Odstrániť z obľúbených"
         onClick={toggleDeleteFavorite}
       />
     </div>

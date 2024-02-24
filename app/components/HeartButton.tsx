@@ -22,7 +22,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({
 
   return (
     <div>
-      <Button small label="Pridat do oblubenych" onClick={toggleFavorite} />
+      <Button small label="Pridať do obĺúbených" onClick={toggleFavorite} />
     </div>
   );
 };

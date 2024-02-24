@@ -16,7 +16,6 @@ import Input from "../inputs/Input";
 import TextField from "@mui/material/TextField";
 import Search from "./Search";
 import useSearchModal from "@/app/hooks/useSearchModal";
-import SearchModal from "../Modals/SearchModal";
 
 interface PropertiesProps {
   listings: any;
@@ -28,7 +27,7 @@ const Properties: React.FC<PropertiesProps> = ({
   currentUser,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [exercisesPerPage] = useState(8);
+  const [exercisesPerPage] = useState(5);
   const [isForRent, setIsForRent] = useState(true);
   const [isForSale, setIsForSale] = useState(false);
   const [isForRentAndSale, setIsForRentAndSale] = useState(true);
@@ -53,7 +52,16 @@ const Properties: React.FC<PropertiesProps> = ({
     indexOfFirstExercise,
     indexOfLastExercise
   );
-
+  const text = isForRent ? (
+    <span>
+      Najnovšie inzeráty na <span className="text-blue-500">Predaj</span>
+    </span>
+  ) : (
+    <span>
+      Najnovšie inzeráty na <span className="text-blue-500">Prenájom</span>
+    </span>
+  );
+  let predaj = <span className="text-blue-500">Predaj</span>;
   const paginate = (event: any, value: any) => {
     setCurrentPage(value);
 
@@ -62,36 +70,78 @@ const Properties: React.FC<PropertiesProps> = ({
   const sale = <p className="text-blue-500">Na predaj</p>;
   return (
     <Container>
-      <div className="w-full flex-col items-center justify-center">
-        <div className="px-[30px] border-2 border-white  rounded-xl py-6 max-w-[1170px] mx-auto  lg:gap-x-3 relative lg:-top-4 lg:shadow-1 bg-white lg:bg-transparent lg:backdrop-blur ">
-          <button
-            onClick={() => {
-              setIsForRent(true);
-            }}
-            className=" bg-blue-500 hover:bg-blue-600 transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center text-white text-lg items-center "
-          >
-            Prenájom
-          </button>
+      <div className="mt-10">
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="relative isolate overflow-hidden bg-white px-6 py-20 text-center sm:px-16 sm:shadow-sm dark:bg-transparent">
+            <p className="mx-auto max-w-2xl text-3xl font-bold tracking-tight  sm:text-4xl">
+              <div>{text}</div>
+            </p>
 
-          <button
-            onClick={() => {
-              searchModal.onOpen;
-            }}
-            className=" bg-blue-500 hover:bg-blue-600 transition  lg:max-w-full h-16 rounded-lg flex justify-center text-white text-lg items-center "
-          >
-            Filter
-          </button>
+            <form action="/search">
+              <label
+                className="mx-auto mt-8 relative bg-white min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-center border py-2 px-2 rounded-2xl gap-2 shadow-2xl focus-within:border-gray-300"
+                htmlFor="search-bar"
+              >
+                <input
+                  onClick={searchModal.onOpen}
+                  className="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white"
+                ></input>
 
-          <button
-            onClick={() => {
-              setIsForRent(false);
-            }}
-            className=" bg-blue-500 hover:bg-blue-600 transition w-full  lg:max-w-[162px] h-16 rounded-lg flex justify-center text-white text-lg items-center "
-          >
-            Predaj
-          </button>
+                <button
+                  type="submit"
+                  className="w-full md:w-auto px-6 py-3 bg-blue-500 border-black text-white fill-white active:scale-95 duration-100 border will-change-transform overflow-hidden relative rounded-xl transition-all"
+                >
+                  <div className="flex items-center transition-all opacity-1">
+                    <span className="text-sm font-semibold whitespace-nowrap truncate mx-auto">
+                      Hĺadať
+                    </span>
+                  </div>
+                </button>
+              </label>
+            </form>
+            <div className="flex justify-center gap-16 mt-4">
+              <div>
+                <button
+                  className="before:ease relative h-12  overflow-hidden border border-blue-500 text-blue-500 shadow-2xl transition-all before:absolute before:top-1/2 before:h-0 before:w-64 before:origin-center before:-translate-x-20 before:rotate-45 w-28 before:bg-blue-500 before:duration-300 hover:text-white hover:shadow-blue-500 hover:before:h-64 hover:before:-translate-y-32"
+                  type="button"
+                  onClick={() => setIsForRent(false)}
+                >
+                  <span className="relative z-10">Predaj</span>
+                </button>
+              </div>
+              <div>
+                <button
+                  className="before:ease relative h-12  overflow-hidden border border-blue-500 text-blue-500 shadow-2xl transition-all before:absolute before:top-1/2 before:h-0 before:w-64 before:origin-center before:-translate-x-20 before:rotate-45 w-28 before:bg-blue-500 before:duration-300 hover:text-white hover:shadow-blue-500 hover:before:h-64 hover:before:-translate-y-32"
+                  type="button"
+                  onClick={() => setIsForRent(true)}
+                >
+                  <span className="relative z-10">Prenájom</span>
+                </button>
+              </div>
+            </div>
+            <svg
+              viewBox="0 0 1024 1024"
+              className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+              aria-hidden="true"
+            >
+              <circle
+                cx="512"
+                cy="512"
+                r="512"
+                fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
+                fill-opacity="0.7"
+              ></circle>
+              <defs>
+                <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+                  <stop stop-color="#3b82f6"></stop>
+                  <stop offset="1" stop-color="#1d4ed8"></stop>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
       </div>
+      <div></div>
       <Box id="exercises" sx={{ mt: { lg: "5px" } }} mt="5px" p="5px">
         <div
           className="
@@ -106,7 +156,6 @@ const Properties: React.FC<PropertiesProps> = ({
             gap-3
           "
         >
-          {}
           {isForRent == true
             ? currentListing.map((listing: any) => (
                 <PropertyCardBetter
@@ -124,17 +173,18 @@ const Properties: React.FC<PropertiesProps> = ({
               ))}
         </div>
         <Stack sx={{ mt: { lg: "114px", xs: "70px" } }} alignItems="center">
-          {listings.length > 3 && (
-            <Pagination
-              color="standard"
-              shape="rounded"
-              defaultPage={1}
-              count={Math.ceil(listings.length / exercisesPerPage)}
-              page={currentPage}
-              onChange={paginate}
-              size="large"
-            />
-          )}
+          {propertiesForSale.length > 3 ||
+            (propertiesForRent.length > 5 && (
+              <Pagination
+                color="standard"
+                shape="rounded"
+                defaultPage={1}
+                count={Math.ceil(listings.length / exercisesPerPage)}
+                page={currentPage}
+                onChange={paginate}
+                size="large"
+              />
+            ))}
         </Stack>
       </Box>
     </Container>

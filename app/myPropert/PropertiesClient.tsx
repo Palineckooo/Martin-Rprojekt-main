@@ -6,12 +6,13 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { SafeListing, SafeUser } from "@/app/types";
-
+import PropertyCardBetterDeleteTotal from "../components/properties/PropertyCardBetterDeketeTotal";
 import Heading from "../components/Modals/Heading";
 import Container from "@/app/components/Container";
 import PropertyCardBetter from "../components/properties/PropertyCardBetter";
 import Navbar1 from "../components/navbar/Navbar1";
 import PropertyCardBetterDelete from "../components/properties/PropertyCardBetterDelete";
+import Heading2 from "../Heading2";
 
 interface PropertiesClientProps {
   listings: SafeListing[];
@@ -32,7 +33,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
       axios
         .delete(`/api/listings/${id}`)
         .then(() => {
-          toast.success("Listing deleted");
+          toast.success("Inzerat vymazany");
           router.refresh();
         })
         .catch((error) => {
@@ -47,28 +48,28 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
 
   return (
     <Container>
-      <Heading title="Inzeráty" subtitle="List vašich inzerátov" />
+      <Heading2 />
       <div
         className="
-          mt-10
-          grid 
-          grid-cols-1 
-          sm:grid-cols-2 
-          md:grid-cols-3 
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8
+     pt-40
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            md:grid-cols-3 
+            lg:grid-cols-4
+            xl:grid-cols-5
+            2xl:grid-cols-4
+            gap-3
         "
       >
         {listings.map((listing: any) => (
-          <PropertyCardBetterDelete
+          <PropertyCardBetterDeleteTotal
             key={listing.id}
             data={listing}
             actionId={listing.id}
             onAction={onDelete}
             disabled={deletingId === listing.id}
-            actionLabel="Vymazanie inzeratu"
+            actionLabel="Vymazanie inzerátu"
             currentUser={currentUser}
           />
         ))}
