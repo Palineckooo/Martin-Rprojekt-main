@@ -54,11 +54,11 @@ const Properties: React.FC<PropertiesProps> = ({
   );
   const text = isForRent ? (
     <span>
-      Najnovšie inzeráty na <span className="text-blue-500">Predaj</span>
+      Najnovšie inzeráty na <span className="text-blue-500">Prenájom</span>
     </span>
   ) : (
     <span>
-      Najnovšie inzeráty na <span className="text-blue-500">Prenájom</span>
+      Najnovšie inzeráty na <span className="text-blue-500">Predaj</span>
     </span>
   );
   let predaj = <span className="text-blue-500">Predaj</span>;

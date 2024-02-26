@@ -167,9 +167,11 @@ const PropertyCardBetter: React.FC<PropertyCardBetterProps> = ({
                 {data.email}
               </p>
             </div>
-            <div className="mt-6">
-              <HeartButton listingId={data.id} currentUser={currentUser} />
-            </div>
+            {currentUser && (
+              <div className="mt-6">
+                <HeartButton listingId={data.id} currentUser={currentUser} />
+              </div>
+            )}
           </div>
         </div>
       </a>
